@@ -1,0 +1,3 @@
+﻿  FileName.cpp
+D:\c++学习\类和对象3\Project1\Project1\FileName.cpp(429,1): warning C4715: “Date::operator<”: 不是所有的控件路径都返回值
+  Project1.vcxproj -> D:\c++学习\类和对象3\Project1\x64\Debug\Project1.exe

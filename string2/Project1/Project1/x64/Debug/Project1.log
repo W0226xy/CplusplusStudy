@@ -1,0 +1,6 @@
+﻿  FileName.cpp
+D:\c++学习\string2\Project1\Project1\FileName.cpp(429,15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\c++学习\string2\Project1\Project1\FileName.cpp(460,15): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\c++学习\string2\Project1\Project1\FileName.cpp(468,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+D:\c++学习\string2\Project1\Project1\FileName.cpp(469,11): warning C4267: “初始化”: 从“size_t”转换到“int”，可能丢失数据
+  Project1.vcxproj -> D:\c++学习\string2\Project1\x64\Debug\Project1.exe

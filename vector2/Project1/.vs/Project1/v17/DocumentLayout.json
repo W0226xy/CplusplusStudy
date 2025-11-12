@@ -18,12 +18,8 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
-            },
             {
               "$type": "Document",
               "DocumentIndex": 0,
@@ -32,10 +28,15 @@
               "RelativeDocumentMoniker": "Project1\\vector.h",
               "ToolTip": "D:\\c\u002B\u002B\u5B66\u4E60\\vector2\\Project1\\Project1\\vector.h",
               "RelativeToolTip": "Project1\\vector.h",
-              "ViewState": "AQIAACIAAAAAAAAAAAAYwCoAAAAdAAAA",
+              "ViewState": "AQIAAP8BAAAAAAAAAAAswCICAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2024-11-06T13:05:56.662Z",
+              "IsPinned": true,
               "EditorCaption": ""
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
             },
             {
               "$type": "Document",
@@ -45,7 +46,7 @@
               "RelativeDocumentMoniker": "Project1\\FileName.cpp",
               "ToolTip": "D:\\c\u002B\u002B\u5B66\u4E60\\vector2\\Project1\\Project1\\FileName.cpp",
               "RelativeToolTip": "Project1\\FileName.cpp",
-              "ViewState": "AQIAACEAAAAAAAAAAAAYwCwAAAALAAAA",
+              "ViewState": "AQIAAB4AAAAAAAAAAAAAADMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2024-11-06T11:02:25.921Z",
               "EditorCaption": ""

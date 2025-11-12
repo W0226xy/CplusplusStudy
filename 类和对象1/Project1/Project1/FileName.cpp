@@ -1,11 +1,11 @@
-#include "stack.h"
+//#include "stack.h"
 //int main()
 //{
 //	int x = Add(1, 2);
 //	cout << x << endl;
 //}
-
-
+#include<iostream>
+using namespace std;
 //auto的使用：
 //#include<map>
 //#include<string>
@@ -30,7 +30,7 @@
 //	auto& a = i;//a是i的别名
 //	cout << "a地址="<<  &a << endl;
 //	cout << "i地址=" << &i << endl;//a,i两个地址相同
-//
+//             
 //	void(*pf1)(int, int) = func;//函数指针
 //	auto pf2 = func;
 //
@@ -46,7 +46,7 @@
 //
 //	return 0;
 //}
-
+//auto不能做参数，可以返回值（新c++版本可以，旧版本不行）
 
 //int main()
 //{
@@ -154,24 +154,24 @@
 //}
 
 
-class Date
-{
-	int _year;
-	int _month;
-	int _day;
-
-public://类内类外都可以访问
-	void init(int year, int month, int day)
-	{
-		_year = year;
-		_month = month;
-		_day = day;
-	}
-	void print()
-	{
-		cout << _year << "年" << _month << "月" << _day << "日" << endl;;
-	}
-};
+//class Date
+//{
+//	int _year;
+//	int _month;
+//	int _day;
+//
+//public://类内类外都可以访问
+//	void init(int year, int month, int day)
+//	{
+//		_year = year;
+//		_month = month;
+//		_day = day;
+//	}
+//	void print()
+//	{
+//		cout << _year << "年" << _month << "月" << _day << "日" << endl;;
+//	}
+//};
 //public类内类外都可以访问
 //protect和private类外不可直接访问
 //不加访问限定符，则默认private
@@ -185,12 +185,12 @@ public://类内类外都可以访问
 //{
 //	Date d1;
 //	d1.init(2024, 8, 12);
-//	d1.print();
+//	d1.print();//2024年8月12日
 //	cout << sizeof(d1) << endl;//12
 //
 //	Date d2;
-//	d2.init(2024, 8, 13);
-//	d2.print();
+//	d2.init(2024, 8, 13); 
+//	d2.print();//2024年8月13日
 //	//看汇编，可以发现d1.print()和d2.print()地址是一样的
 //
 //	//计算对象大小只算了成员变量

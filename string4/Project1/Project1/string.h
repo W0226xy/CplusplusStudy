@@ -5,6 +5,38 @@
 #include<assert.h>
 #include <cstring>
 using namespace std;
+bool operator==(const string& s1, const string& s2)
+{
+	int ret = strcmp(s1.c_str(), s2.c_str());//相等是0
+	return ret == 0;
+}
+
+bool operator<(const string& s1, const string& s2)
+{
+	int ret = strcmp(s1.c_str(), s2.c_str());
+	return ret < 0;
+}
+
+bool operator<=(const string& s1, const string& s2)
+{
+	return s1 < s2 || s1 == s2;
+}
+
+bool operator>(const string& s1, const string& s2)
+{
+	return !(s1<=s2);
+}
+
+bool operator>=(const string& s1, const string& s2)
+{
+	return !(s1 < s2);
+}
+
+bool operator!=(const string& s1, const string& s2)
+{
+	return !(s1 == s2);
+}
+
 namespace wxy
 {
 	class string
@@ -56,7 +88,7 @@ namespace wxy
 			_str = new char[s._capacity + 5];
 			strcpy_s(_str,s._size+1,s._str);
 			_size = s._size;
-			_capacity = s._capacity;
+			_capacity = s._capacity;//capacity算的是有效字符，是不包含\0的，虽然开空间会额外有一个\0
 		}
 
 		//析构函数
@@ -68,7 +100,7 @@ namespace wxy
 			_capacity = 0;
 		}
 
-		const char* c_str()
+		const char* c_str() 
 		{
 			return _str;
 		}
@@ -219,6 +251,8 @@ namespace wxy
 
 		}
 
+		
+
 		void erase(size_t pos, size_t len = npos)//从pos位置删len个字符
 		{
 			assert(pos < _size);//这里删除，不需要考虑\0——\0不需要你删除
@@ -267,6 +301,81 @@ namespace wxy
 			return *this;
 		}
 
+		//赋值写法2
+		string& operator=(string& s)
+		{
+			swap(s);
+			return *this;
+		}
+
+		
+		void swap(string& s)
+		{
+			std::swap(_str, s._str);
+			std::swap(_size, s._size);
+			std::swap(_capacity, s._capacity);
+		}
+
+		size_t find(char ch ,size_t pos=0) const//查到第一次出现字符ch的下标位置,可以指定从哪个下标开始查
+		{
+			for (size_t i = pos; i < _size; i++)
+			{
+				if (_str[i] == ch)
+				{
+					return i;
+				}
+			}
+			return npos;//没找到就返回-1
+		}
+
+		size_t find(const char* sub, size_t pos = 0) const//查子串第一次出现的位置
+		{
+			assert(pos < _size);
+			const char* p = strstr(_str+pos, sub);
+			if (p)
+			{
+				return p - _str;
+			}
+			else
+			{
+				return npos;
+			}
+		}
+
+		string substr(size_t pos = 0, size_t len = npos)//从pos位置开始取len个长度的子串
+		{
+			string sub;
+			if (len >= _size - pos)//要取的长度超过了原字符串末尾
+			{
+				for (size_t i = pos; i < _size; i++)
+				{
+					sub += _str[i];
+				}
+			}
+			else
+			{
+				for (size_t i = pos; i < pos+len; i++)
+				{
+					sub += _str[i];
+				}
+			}
+			return sub;
+		}
+
+		bool operator==(const string& s)
+		{
+			int ret = strcmp(_str, s._str);//相等是0
+			return ret == 0;
+		}
+
+		
+		
+		void clear()//清数据，不删空间(_capacity不动)
+		{
+			_size = 0;
+			_str[_size] = '\0';//其实就是字符串首位赋\0
+		}
+
 	private:
 		char* _str;
 		size_t _size;
@@ -277,6 +386,30 @@ namespace wxy
 	};
 
 	const int string::npos = -1;//静态成员变量，属于整个类，属于每个对象
+
+	
+
+	ostream&  operator<<(ostream& out,const string& s)
+	{
+		for (auto ch : s)
+		{
+			out << ch;
+		}
+		return out;
+	}
+
+	istream& operator>>(istream& in, string& s)
+	{
+		s.clear();
+		char ch;
+		ch = in.get();
+		while (ch != ' ' && ch != '\n')
+		{
+			s += ch;
+			ch = in.get();
+		}
+		return in;
+	}
 
 	void test1()
 	{
@@ -441,4 +574,54 @@ namespace wxy
 		cout << s3.c_str() << endl;
 		
 	}
+
+	void test9()
+	{
+		string s1("hhhhwxy");
+		s1.insert(2, "123");
+		cout << s1.c_str() << endl;
+
+		cout << "--------" << endl;
+		string s2("s2s2s2");
+		string s3("s3s3s3");
+		swap(s2, s3);
+		cout << s2.c_str() << endl;
+		cout << s3.c_str() << endl;
+	}
+
+	void test10()
+	{
+		string s1("hi my name is wxy");
+		cout << s1.find('a') << endl;//7
+		cout << s1.find("my") << endl;//3
+		cout << s1.find("my", 6);//从6号下标找my字符串
+		//这里会打印一个随机值，它会往后一直找，直到某个位置随机出现my字符串
+	}
+
+	void test11()
+	{
+		string s1("hello world");
+		string s2=s1.substr(2, 6);
+		cout << s2.c_str() << endl;
+
+		string s3 = s1.substr(2, 100);
+		cout << s3.c_str() << endl;
+	}
+
+	void test12()
+	{
+		string s1("wxy");
+		string s2("wxy");
+		string s3("world");
+
+		cout << (s1 == s2) << endl;//1
+		cout << (s1 == s3) << endl;//0
+		cout << (s1 == "wxy") << endl;//1
+
+		cout << s1 << endl;
+		cin >> s1 >> s2;
+		cout << s1 << s2 << endl;
+	}
 }
+
+

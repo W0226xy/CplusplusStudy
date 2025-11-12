@@ -104,25 +104,34 @@ using namespace std;
 
 
 #include"Date.h"
-int main()
+//int main()
+//{
+//	Date d1(2024, 8, 19);
+//	Date d2 = d1 + 20;
+//	/*d2.print();
+//	d1.print();
+//
+//	d2 -= 20;
+//	d2.print();*/
+//
+//	d1 += 5000;
+//	d1.print();
+//
+//	/*d2++;
+//	d2.print();*/
+//
+//	Date d3(2038, 4, 28);
+//	Date d4(2024, 8, 19);
+//	int x = d3 - d4;
+//	cout << x << endl;
+//	return 0;
+//}
+
+/*int main()
 {
-	Date d1(2024, 8, 19);
-	Date d2 = d1 + 20;
-	/*d2.print();
-	d1.print();
+	Date d(2024, 8, 20);
+	cout << d << endl;;
 
-	d2 -= 20;
-	d2.print();*/
-
-	d1 += 5000;
-	d1.print();
-
-	/*d2++;
-	d2.print();*/
-
-	Date d3(2038, 4, 28);
-	Date d4(2024, 8, 19);
-	int x = d3 - d4;
-	cout << x << endl;
-	return 0;
-}
+	Date d1(2024, 8, 30);
+	cout << d << d1 << endl;
+}*/	

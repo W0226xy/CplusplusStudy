@@ -1,10 +1,10 @@
 #include<stdio.h>
 #include<iostream>
 int x = 0;
-using namespace std;
+using namespace std;//展开命名空间，可以直接用这个命名空间里的东西
 namespace wxy
 {
-	int x = 2;
+	int x = 2;//命名空间可以定义变量、函数、结构体
 	int add(int a, int b)
 	{
 		return a + b;

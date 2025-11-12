@@ -190,3 +190,9 @@ int Date::operator-(const Date& d)//默认原对象日期>d日期
 	sum += 1;
 	return sum;
 }
+
+ostream& operator<<(ostream& out, const Date& d)
+{
+	cout << d._Year << "-" << d._Month << "-" << d._Day;
+	return out;
+}

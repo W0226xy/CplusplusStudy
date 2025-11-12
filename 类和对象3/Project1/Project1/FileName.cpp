@@ -41,64 +41,64 @@ using namespace std;
 // 注意：创建哪个类的对象则调用该类的析构函数，销毁那个类的对象则调用该类的析构函数
 
 
-//class Date
-//{
-//public:
-//	Date(int year=1)
-//	{
-//		_Year = year;
-//		cout << "Date()" << _Year << endl;
-//	}
-//
-//	~Date()
-//	{
-//		cout << "~Date()"<<_Year << endl;
-//	}
-//private:
-//	int _Year;
-//	int _Month;
-//	int _Day;
-//	
-//};
+class Date
+{
+public:
+	Date(int year=1)
+	{
+		_Year = year;
+		cout << "Date()" << _Year << endl;
+	}
 
-//void func()
-//{
-//	Date d3(3);
-//	static Date d4(4);
-//}
-//
-//Date d5(5);
-//
-//static Date d6(6);
-//int main()
-//{
-//	Date d1(1);
-//	Date d2(2);
-//	func();
-//	
-//	//先定义的先构造，后定义的先析构
-//		
-//		/*Date()5
-//		Date()6
-//		Date()1
-//		Date()2
-//		Date()3
-//		Date()4
-//		~Date()3
-//		~Date()2
-//		~Date()1
-//		~Date()4
-//		~Date()6
-//		~Date()5*/
-//
-//	//创建：先创全局的，后创局部的（先创的先构造）
-//	//销毁：先销局部的，后销全局的（后创先销毁）
-//
-//	//全局的和静态的是最先创建
-//	
-//
-//	//销毁顺序：局部对象（后定义的先析构）——局部静态——全局对象（后定义的先析构）
-//}
+	~Date()
+	{
+		cout << "~Date()"<<_Year << endl;
+	}
+private:
+	int _Year;
+	int _Month;
+	int _Day;
+	
+};
+
+void func()
+{
+	Date d3(3);
+	static Date d4(4);
+}
+
+Date d5(5);
+
+static Date d6(6);
+int main()
+{
+	Date d1(1);
+	Date d2(2);
+	func();
+	
+	//先定义的先构造，后定义的先析构
+		
+		/*Date()5
+		Date()6
+		Date()1
+		Date()2
+		Date()3
+		Date()4
+		~Date()3
+		~Date()2
+		~Date()1
+		~Date()4
+		~Date()6
+		~Date()5*/
+
+	//创建：先创全局的，后创局部的（先创的先构造）
+	//销毁：先销局部的，后销全局的（后创先销毁）
+
+	//全局的和静态的是最先创建
+	
+
+	//销毁顺序：局部对象（后定义的先析构）——局部静态——全局对象（后定义的先析构）
+}
 
 
 //拷贝构造
@@ -160,7 +160,7 @@ using namespace std;
 
 //拷贝构造函数也是特殊的成员函数，其特征如下：
 //1. 拷贝构造函数是构造函数的一个重载形式。
-//2. 拷贝构造函数的参数只有一个且必须是类类型对象的引用，使用传值方式编译器直接报错，因为会引发无穷递归调用。
+//2. 拷贝构造函数的参数只有一个且必须是同类型对象的引用，使用传值方式编译器直接报错，因为会引发无穷递归调用。
 // 3. 若未显式定义，编译器会生成默认的拷贝构造函数。 默认的拷贝构造函数对象按内存存储按字节序完成拷贝，这种拷贝叫做浅拷贝，或者值拷贝。
 // 
 // 
@@ -368,83 +368,83 @@ using namespace std;
 //}
 
 
-class Date
-{
-public:
-	Date(int year = 1, int month = 1,int day=1)
-	{
-		_Year = year;
-		_Month = month;
-		_Day = day;
-	}
-	
-	Date(const Date& d)//拷贝构造，这里参数需要传引用，防止出现“无穷递归”的情况
-	{//加const是为了保护d不能被修改
-		_Year = d._Year;
-		_Month = d._Month;
-		_Day = d._Day;
-	}
-	
-	void print()
-	{
-		cout << _Year << "-" << _Month << "-" << _Day<<endl;
-	}
-	
-	
-	bool operator==( const Date& y)
-	{
-		return this->_Year == y._Year
-			&& this->_Month == y._Month
-			&& this->_Day == y._Day;
-	}
-
-	bool operator<( const Date& y)
-	{
-		if (this->_Year < y._Year)
-		{
-			return true;
-		}
-		else if (this->_Year == y._Year)
-		{
-			if (this->_Month < y._Month)
-			{
-				return true;
-			}
-			else if (this->_Month == y._Month)
-			{
-				if (this->_Day < y._Day)
-				{
-					return true;
-				}
-				else
-				{
-					return false;
-				}
-			}
-			else
-			{
-				return false;
-			}
-		}
-	}
-	
-
-private:
-	int _Year;
-	int _Month;
-	int _Day;
-
-};
-
-int main()
-{
-	Date d1(2023, 3, 1);
-	Date d2(2023, 1, 9);
-	
-	cout<<d1.operator<(d2)<<endl;
-
-	cout << (d1< d2) << endl;//这里中间加一个括号，<<优先级高于<
-
-	cout << (d1 == d2) << endl;
-
-}
+//class Date
+//{
+//public:
+//	Date(int year = 1, int month = 1,int day=1)
+//	{
+//		_Year = year;
+//		_Month = month;
+//		_Day = day;
+//	}
+//	
+//	Date(const Date& d)//拷贝构造，这里参数需要传引用，防止出现“无穷递归”的情况
+//	{//加const是为了保护d不能被修改
+//		_Year = d._Year;
+//		_Month = d._Month;
+//		_Day = d._Day;
+//	}
+//	
+//	void print()
+//	{
+//		cout << _Year << "-" << _Month << "-" << _Day<<endl;
+//	}
+//	
+//	
+//	bool operator==( const Date& y)
+//	{
+//		return this->_Year == y._Year
+//			&& this->_Month == y._Month
+//			&& this->_Day == y._Day;
+//	}
+//
+//	bool operator<( const Date& y)
+//	{
+//		if (this->_Year < y._Year)
+//		{
+//			return true;
+//		}
+//		else if (this->_Year == y._Year)
+//		{
+//			if (this->_Month < y._Month)
+//			{
+//				return true;
+//			}
+//			else if (this->_Month == y._Month)
+//			{
+//				if (this->_Day < y._Day)
+//				{
+//					return true;
+//				}
+//				else
+//				{
+//					return false;
+//				}
+//			}
+//			else
+//			{
+//				return false;
+//			}
+//		}
+//	}
+//	
+//
+//private:
+//	int _Year;
+//	int _Month;
+//	int _Day;
+//
+//};
+//
+//int main()
+//{
+//	Date d1(2023, 3, 1);
+//	Date d2(2023, 1, 9);
+//	
+//	cout<<d1.operator<(d2)<<endl;
+//
+//	cout << (d1< d2) << endl;//这里中间加一个括号，<<优先级高于<
+//
+//	cout << (d1 == d2) << endl;
+//
+//}

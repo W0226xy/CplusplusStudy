@@ -45,6 +45,7 @@ public:
 
 	int operator-(const Date& d);
 
+
 	int GetMonthDay(int year, int month)//获取某年某月一共多少天
 	{
 		assert(month > 0 && month < 13);
@@ -109,8 +110,14 @@ public:
 			return 365;
 		}
 	}
+
+	//友元声明，这个函数可以访问私有内容
+	friend ostream& operator<<(ostream& out, const Date& d);
+
 private:
 	int _Year;
 	int _Month;
 	int _Day;
 };
+
+ostream& operator<<(ostream& out, const Date& d);

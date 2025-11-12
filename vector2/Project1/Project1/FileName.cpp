@@ -42,6 +42,12 @@ int main()
 	//wxy::test7();
 
 	//wxy::test8();
-	wxy::test9();
+	/*wxy::test9();*/
+	/*wxy::test10();*/
+	/*wxy::test11();*/
+	/*wxy::test12();*/
+	/*wxy::test13();*/
+	/*wxy::test14();*/
+	wxy::test15();
 }
 

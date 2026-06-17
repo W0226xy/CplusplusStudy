@@ -32,7 +32,7 @@
               "RelativeDocumentMoniker": "Project1\\test.cpp",
               "ToolTip": "D:\\c\u002B\u002B\u5B66\u4E60\\list\\Project1\\Project1\\test.cpp",
               "RelativeToolTip": "Project1\\test.cpp",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAAABIAAAACAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABIAAAACAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-07T00:58:11.158Z",
               "EditorCaption": ""
@@ -45,9 +45,10 @@
               "RelativeDocumentMoniker": "Project1\\FileName.cpp",
               "ToolTip": "D:\\c\u002B\u002B\u5B66\u4E60\\list\\Project1\\Project1\\FileName.cpp",
               "RelativeToolTip": "Project1\\FileName.cpp",
-              "ViewState": "AQIAABsAAAAAAAAAAAAAADAAAAADAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAADAAAAADAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
-              "WhenOpened": "2025-11-04T11:10:03.143Z"
+              "WhenOpened": "2025-11-04T11:10:03.143Z",
+              "EditorCaption": ""
             }
           ]
         }

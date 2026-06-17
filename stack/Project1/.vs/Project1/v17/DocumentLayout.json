@@ -35,8 +35,7 @@
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-11-13T01:29:13.171Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Bookmark",
@@ -52,8 +51,7 @@
               "RelativeToolTip": "Project1\\queue.h",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAACQAAAASAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
-              "WhenOpened": "2025-11-13T07:23:43.62Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-13T07:23:43.62Z"
             },
             {
               "$type": "Document",
@@ -63,7 +61,7 @@
               "RelativeDocumentMoniker": "Project1\\FileName.cpp",
               "ToolTip": "D:\\c\u002B\u002B\u5B66\u4E60\\stack\\Project1\\Project1\\FileName.cpp",
               "RelativeToolTip": "Project1\\FileName.cpp",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAANEAAAAXAAAA",
+              "ViewState": "AQIAAGwAAAAAAAAAAAAAANEAAAAXAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-11-12T01:46:43.85Z",
               "EditorCaption": ""

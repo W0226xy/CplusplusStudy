@@ -387,20 +387,31 @@ public:
 		}
 	}
 
-	void RotateL(Node* parent)
+	void RotateL(Node* parent)//左旋
 	{
-		Node* subR = parent->_right;
-		Node* subRL = subR->_left;
+		//假设要对10左旋
+		//       30 ppNode               30 
+		//       /                       /
+		//      10  parent  变化后       20
+		//        \                    /  \
+		//         20 subR            10  25
+		//        /  \               /
+		// subRL 15   25            15 
+		     
+		
+		Node* subR = parent->_right;//20
+		Node* subRL = subR->_left;//15
 
-		parent->_right = subRL;
+		parent->_right = subRL;//10-15
 		if (subRL)
-			subRL->_parent = parent;
+			subRL->_parent = parent;//15的父节点变为10
 
-		subR->_left = parent;
-		Node* ppNode = parent->_parent;
+		subR->_left = parent;//20的左孩子变为10
+		Node* ppNode = parent->_parent;//获取10的父节点30
 
-		parent->_parent = subR;
+		parent->_parent = subR;//10的父节点变为20
 
+		// 如果parent是根节点，更新根节点为subR
 		if (parent == _root)
 		{
 			_root = subR;

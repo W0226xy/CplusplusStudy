@@ -179,45 +179,132 @@ private:
 // }
 
 
-class Buffer {
-public:
-    Buffer(size_t n)
-        : _size(n)
-        , _data(new int[n])
-    {}
+// class Buffer {
+// public:
+//     Buffer(size_t n)
+//         : _size(n)
+//         , _data(new int[n])
+//     {}
 
-    ~Buffer() {
-        delete[] _data;
-    }
+//     ~Buffer() {
+//         delete[] _data;
+//     }
 
-    // 移动构造
-    Buffer(Buffer&& other) noexcept//noexcept 表示该函数不会抛出异常
-        : _size(other._size)
-        , _data(other._data)
-    {
-        // 把资源转移给新对象
-        other._size = 0;
-        other._data = nullptr;
-    }
+//     // 移动构造
+//     Buffer(Buffer&& other) noexcept//noexcept 表示该函数不会抛出异常
+//         : _size(other._size)
+//         , _data(other._data)
+//     {
+//         // 把资源转移给新对象
+//         other._size = 0;
+//         other._data = nullptr;
+//     }
 
-private:
-    size_t _size;
-    int* _data;
-};
+// private:
+//     size_t _size;
+//     int* _data;
+// };
+
+// int main()
+// {
+//     //右值引用的意义：可以延长右值的生命周期，避免不必要的拷贝，提高性能
+
+//     //需要调用拷贝构造，把 a 中的一百万个元素复制到 b 的新空间中，代价很大。
+// 	// Buffer a(1000000);
+//     // Buffer b = a;
+
+//     // 使用移动构造，这里不会重新申请并复制一百万个元素，而是直接把 a 的指针交给 b,速度非常快
+//     Buffer a(1000000);
+//     Buffer b = std::move(a);//std::move 把左值转换成一种可以被移动的右值引用类型。
+//     //std::move(a),告诉编译器 a 后面不准备继续使用了，可以把它内部的资源转走。
+
+//     string s1="11111111111111111111";
+//     string s2=s1;// 拷贝构造，s2 会有一份 s1 的副本，s1的资源还在
+//     string s3=std::move(s1);// 移动构造，s3 接管 s1 的资源，s1 变为空字符串
+
+//     //右值引用本身是左值，只有右值引用本身处理成左值，才能实现移动构造和移动赋值
+//     string&& s4 = string("1111"); // 右值引用绑定到临时对象，string&&，声明类型是右值引用，但是 s4 本身是一个左值，可以取地址
+//     cout << s4 << endl; // 输出 "1111"
+//     cout << &s4 << endl; // 输出 s4 的地址0x7fffffffd5e0
+//     //cout << &string("1111") << endl; // string("1111")是一个临时对象，属于右值，不能直接取地址。这里会报错
+// 	return 0;
+// }
+
+// int main()
+// {
+//     string s = "1111";
+//     string&s1 = s;//左值引用
+//     string&& s2 = std::move(s);//右值引用，s2本身是左值
+// }
+
+
+// // 完美转发示例
+// void Fun(int& x) { cout << "左值引用" << endl; }
+// void Fun(const int& x) { cout << "const 左值引用" << endl; }
+
+// void Fun(int&& x) { cout << "右值引用" << endl; }
+// void Fun(const int&& x) { cout << "const 右值引用" << endl; }
+
+
+// template<typename T>
+// //实参传左值，T 会被推导为 int&，T&& 实际上是 int& &，折叠为 int&
+// //实参传右值，T 会被推导为 int，T&& 实际上是 int&&
+// //引用折叠规则：只要出现一个左值引用 &，最终结果就是左值引用；只有两个 && 组合时，结果才是右值引用。
+// // | 原类型    | 组合后的类型       | 折叠结果 |
+// // | `T& &`   | 左值引用 + 左值引用 | `T&` |
+// // | `T& &&`  | 左值引用 + 右值引用 | `T&` |
+// // | `T&& &`  | 右值引用 + 左值引用 | `T&` |
+// // | `T&& &&` | 右值引用 + 右值引用 | `T&&` |
+// void PerfectForward(T&& t)// 完美转发模板函数，调用时优先匹配普通函数，模板函数实际上基本不会被调用
+// {
+// 	//Fun((T&&)t);
+// 	Fun(forward<T>(t));//标准的完美转发写法
+// }
+
+// void PerfectForward(int&& t)
+// {
+// 	Fun((int&&)t);
+// }
+
+// void PerfectForward(int& t)
+// {
+// 	Fun((int&)t);
+// }
+
+// void PerfectForward(const int&& t)
+// {
+// 	Fun((const int&&)t);
+// }
+
+// void PerfectForward(const int& t)
+// {
+// 	Fun((const int&)t);
+// }
+
+// int main()
+// {
+// 	PerfectForward(10);           // 右值引用
+
+// 	int a;
+// 	PerfectForward(a);            // 左值引用
+// 	PerfectForward(std::move(a)); // 右值引用
+
+// 	const int b = 8;
+// 	PerfectForward(b);		      // const 左值引用
+// 	PerfectForward(std::move(b)); // const 右值引用
+
+// 	return 0;
+// }
+
 
 int main()
 {
-    //右值引用的意义：可以延长右值的生命周期，避免不必要的拷贝，提高性能
-
-    //需要调用拷贝构造，把 a 中的一百万个元素复制到 b 的新空间中，代价很大。
-	// Buffer a(1000000);
-    // Buffer b = a;
-
-    // 使用移动构造，这里不会重新申请并复制一百万个元素，而是直接把 a 的指针交给 b,速度非常快
-    Buffer a(1000000);
-    Buffer b = std::move(a);//std::move 把左值转换成一种可以被移动的右值引用类型。
-    //std::move(a),告诉编译器 a 后面不准备继续使用了，可以把它内部的资源转走。
-	return 0;
+    //lambda 表达式示例
+    auto add = [](int a, int b) -> int { return a + b; };
+    auto add1=[](int a, int b) { return a - b; };//如果不写返回类型，编译器会根据 return 语句自动推导类型
+    auto func=[]{ cout << "Hello, Lambda!" << endl; };// 不带参数的 lambda 表达式
+    cout << add(3, 4) << endl;// 输出 7
+    cout << add1(7, 4) << endl;// 输出 3
+    func(); // 输出 "Hello, Lambda!"
 }
-
 
